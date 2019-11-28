@@ -5,10 +5,20 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2019/20
 * [![Shiny](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/jaanos/APPR-2019-20/master?urlpath=shiny/APPR-2019-20/projekt.Rmd) Shiny
 * [![RStudio](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/jaanos/APPR-2019-20/master?urlpath=rstudio) RStudio
 
-## Tematika
+## Analiza energetike v Sloveniji 
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal.
-Tukaj boste napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+V svojem projektu bom analiziral energetiko. V za sklop pridejo v poštev poraba obnovljivih virov energije in odpadki le-teh, ceno elektične energije, in njeno porabo v gospodinjstvih, dostopnost in manjko elektrike. Osredotočil se bom na državo Slovenijo in sicer na nihanje teh podatkov v obdobjih od leta 2008 do 2018.
+
+## Podatkovni viri
+
+Vse podatke bom pridobil na portalu SURS (Statistični urad Republike Slovenije) in jih razporedil v tabele:
+
+* Tabela 1: cene energentov in razlika v času (zemeljski plin, elektrika ter primerjava med njima): https://pxweb.stat.si/SiStatDb/pxweb/sl/30_Okolje/30_Okolje__18_energetika__02_18175_cene_energentov/?tablelist=true
+
+* Tabela 2: proizvodnja električne energije v elektrarnah (odstotek določene vrste elektrarn glede na celoto, primerjava med njimi): https://pxweb.stat.si/SiStatDb/pxweb/sl/30_Okolje/30_Okolje__18_energetika__03_18176_elektricna_energija/?tablelist=true
+
+* Tabela 3: poraba obnovljivih virov energije in odpadkov po letih (obnovljivost, in poraba po virih): https://pxweb.stat.si/SiStatDb/pxweb/sl/30_Okolje/30_Okolje__18_energetika__05_18223_obnovljivi_viri_odpadki/?tablelist=true  
+
 
 ## Program
 
