@@ -7,7 +7,7 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2019/20
 
 ## Analiza energetike v Sloveniji 
 
-V svojem projektu bom analiziral energetiko. V za sklop pridejo v poštev poraba obnovljivih virov energije in odpadki le-teh, ceno elektične energije, in njeno porabo v gospodinjstvih, dostopnost in manjko elektrike. Osredotočil se bom na državo Slovenijo in sicer na nihanje teh podatkov v obdobjih od leta 2008 do 2018.
+V svojem projektu bom analiziral energetiko. V za sklop pridejo v poštev poraba obnovljivih virov energije in odpadki le-teh, ceno elektične energije, in njeno porabo v gospodinjstvih, dostopnost in manjko elektrike. Osredotočil se bom na državo Slovenijo in sicer na nihanje teh podatkov v obdobjih od leta 2008 do 2018. Podatke bom nato primerjal še z državami sveta.
 
 ## Podatkovni viri
 
@@ -17,7 +17,9 @@ Vse podatke bom pridobil na portalu SURS (Statistični urad Republike Slovenije)
 
 * Tabela 2: proizvodnja električne energije v elektrarnah (odstotek določene vrste elektrarn glede na celoto, primerjava med njimi): https://pxweb.stat.si/SiStatDb/pxweb/sl/30_Okolje/30_Okolje__18_energetika__03_18176_elektricna_energija/?tablelist=true
 
-* Tabela 3: poraba obnovljivih virov energije in odpadkov po letih (obnovljivost, in poraba po virih): https://pxweb.stat.si/SiStatDb/pxweb/sl/30_Okolje/30_Okolje__18_energetika__05_18223_obnovljivi_viri_odpadki/?tablelist=true  
+* Tabela 3: poraba obnovljivih virov energije in odpadkov po letih (obnovljivost, in poraba po virih): https://pxweb.stat.si/SiStatDb/pxweb/sl/30_Okolje/30_Okolje__18_energetika__05_18223_obnovljivi_viri_odpadki/?tablelist=true 
+
+* Tabela 4: poraba obnovljivih virov energije po državah sveta (html datoteka): https://en.wikipedia.org/wiki/List_of_countries_by_renewable_electricity_production
 
 
 ## Program
