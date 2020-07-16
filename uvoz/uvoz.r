@@ -19,4 +19,10 @@ uvozi_primerjavo <- function(){
 }
 
 
-# ANALIZA
+# ANALIZA PROIZVODNJE OBNOVLJIVIH VIROV PO ELEKTARNAH IN LETIH
+
+uvozi_obnovljive_slo <- function(){
+  tabela_obnovljivih_slo <- read_csv('podatki/proizvodnja_v_elektrarnah.csv',col_names=TRUE,locale=locale(encoding='Windows-1250'))
+  return(tabela_obnovljivih_slo)
+}
+
