@@ -1,5 +1,4 @@
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
-
 # ANALIZA CENE ELEKTRIČNE ENERGIJE IN ZEMELJSKEGA PLINA
 
 cene_elektrike <- read_csv('podatki/cena_elektricna_energija.csv',
@@ -30,7 +29,6 @@ tabela_cen_energentov <- rbind(cene_elektrike, cene_plina)
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
-
 # ANALIZA PRIMERJAVE PORABE PO GOSPODINJSTVIH
 
 tabela_primerjav <- read_csv('podatki/primerjava_porabe_po_gospodinjstvih.csv',
@@ -58,3 +56,22 @@ tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvod
 tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvodnja na pragu-jedrska elektrarna (GWh)"] <- "Jedrske elektrarne (GWh)"
 tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvodnja na pragu-son?ne elektrarne (GWh)"] <- "Sončne elektrarne (GWh)"
 tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvodnja na pragu-vetrne elektrarne (GWh)"] <- "Vetrne elektrarne (GWh)"
+
+
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------------
+# ANALIZA PORABE OBNOVLJIVIH VIROV ENERGIJE DRŽAV SVETA (html)
+
+uvozen_html <- read_html('podatki/obnovljivi_viri_energije_svet.html')
+
+tabela_porabe_drzav <- uvozen_html %>% html_nodes(xpath="//table[@class='wikitable sortable mw-datatable']") %>%
+  .[[1]] %>% html_table(fill = TRUE)
+
+tabela_porabe_drzav[,c(2,3,5,6,7,9,10,12,13,15,16,18,19,21)] <- NULL
+
+names(tabela_porabe_drzav) <- c("države", "obnovljiva energija (GWh)", "% obnovljive energije iz hidroelektrarn",
+                                "% obnovljive energije iz vetrnih elektrarn","% obnovljive energije iz biomase in odpadkov",
+                                "% obnovljive energije iz sončne energije", "% obnovljive energije iz geotermalne energije")
+
+tabela_porabe_drzav <- tabela_porabe_drzav[-1, ]
+
