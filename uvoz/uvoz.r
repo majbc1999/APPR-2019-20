@@ -10,7 +10,7 @@ cene_elektrike <- read_csv('podatki/cena_elektricna_energija.csv',
                                          "2019Q4"),skip=1, locale=locale(encoding='Windows-1250'))
 
 cene_elektrike$drugi <- NULL
-cene_elektrike$energent[cene_elektrike$energent == "Slovenija"] <- "Elekrična energija (EUR/kWh)"
+cene_elektrike$energent[cene_elektrike$energent == "Slovenija"] <- "Elekrična energija"
 
 cene_plina <- read_csv('podatki/cena_zemeljski_plin.csv',
                        col_names=c("energent", "enota", "drugi", "2012Q1","2012Q2","2012Q3","2012Q4",
@@ -22,9 +22,11 @@ cene_plina <- read_csv('podatki/cena_zemeljski_plin.csv',
 
 cene_plina$drugi <- NULL
 cene_plina$enota <- NULL
-cene_plina$energent[cene_plina$energent == "Slovenija"] <- "Zemeljski plin (EUR/kWh)"
+cene_plina$energent[cene_plina$energent == "Slovenija"] <- "Zemeljski plin"
 
 tabela_cen_energentov <- rbind(cene_elektrike, cene_plina)
+
+TD_cena_energentov <- tabela_cen_energentov %>% gather("leto in četrtletje", "cena (EUR/kWh)", 2:33)
 
 
 
@@ -39,7 +41,7 @@ tabela_primerjav$`energetski vir`[tabela_primerjav$`energetski vir` == "Uteko?in
 tabela_primerjav$`energetski vir`[tabela_primerjav$`energetski vir` == "Elektri?na energija (GWh)"] <- "Električna energija (GWh)"
 tabela_primerjav$`energetski vir`[tabela_primerjav$`energetski vir` == "Son?na energija (TJ)"] <- "Sončna energija (TJ)"
 
-
+TD_poraba_gospodinjstev <- tabela_primerjav %>% gather("leto", "poraba", 2:11)
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
 # ANALIZA PROIZVODNJE OBNOVLJIVIH VIROV PO ELEKTARNAH IN LETIH
@@ -57,7 +59,7 @@ tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvod
 tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvodnja na pragu-son?ne elektrarne (GWh)"] <- "Sončne elektrarne (GWh)"
 tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvodnja na pragu-vetrne elektrarne (GWh)"] <- "Vetrne elektrarne (GWh)"
 
-
+TD_slo_obnovljivi <- tabela_obnovljivih_slo %>% gather("leto", "proizvodnja (Gwh)", 2:18)
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
 # ANALIZA PORABE OBNOVLJIVIH VIROV ENERGIJE DRŽAV SVETA (html)
@@ -293,6 +295,6 @@ slovar <- c("Afghanistan" = "Afganistan",
             "Venezuela" = "Venezuela", 
             "Vietnam" = "Vietnam") 
 
-tabela_porabe_drzav <- tabela_porabe_drzav %>% mutate(države=slovar[države])
+TD_svet_obnovljivi <- tabela_porabe_drzav %>% mutate(države=slovar[države])
 
   
