@@ -7,7 +7,7 @@ cene_elektrike <- read_csv('podatki/cena_elektricna_energija.csv',
                                          "2014Q3","2014Q4","2015Q1","2015Q2","2015Q3","2015Q4","2016Q1",
                                          "2016Q2","2016Q3","2016Q4","2017Q1","2017Q2","2017Q3","2017Q4",
                                          "2018Q1","2018Q2","2018Q3","2018Q4","2019Q1","2019Q2","2019Q3",
-                                         "2019Q4"),skip=1, locale=locale(encoding='Windows-1250'))
+                                         "2019Q4"),skip=3, locale=locale(encoding='Windows-1250'))
 
 cene_elektrike$drugi <- NULL
 cene_elektrike$energent[cene_elektrike$energent == "Slovenija"] <- "Elekrična energija"
@@ -18,7 +18,7 @@ cene_plina <- read_csv('podatki/cena_zemeljski_plin.csv',
                                    "2014Q3","2014Q4","2015Q1","2015Q2","2015Q3","2015Q4","2016Q1",
                                    "2016Q2","2016Q3","2016Q4","2017Q1","2017Q2","2017Q3","2017Q4",
                                    "2018Q1","2018Q2","2018Q3","2018Q4","2019Q1","2019Q2","2019Q3",
-                                   "2019Q4"),skip=1, locale=locale(encoding='Windows-1250'))
+                                   "2019Q4"),skip=3, locale=locale(encoding='Windows-1250'))
 
 cene_plina$drugi <- NULL
 cene_plina$enota <- NULL
@@ -35,7 +35,7 @@ TD_cena_energentov <- tabela_cen_energentov %>% gather("leto in četrtletje", "c
 
 tabela_primerjav <- read_csv('podatki/primerjava_porabe_po_gospodinjstvih.csv',
                              col_names=c("energetski vir","2009","2010","2011","2012", "2013","2014","2015","2016","2017","2018"),
-                             skip=1, locale=locale(encoding='Windows-1250'))
+                             skip=3, locale=locale(encoding='Windows-1250'))
 
 tabela_primerjav$`energetski vir`[tabela_primerjav$`energetski vir` == "Uteko?injeni naftni plin (t)"] <- "Utekočinjeni naftni plin (t)"
 tabela_primerjav$`energetski vir`[tabela_primerjav$`energetski vir` == "Elektri?na energija (GWh)"] <- "Električna energija (GWh)"
@@ -49,7 +49,7 @@ TD_poraba_gospodinjstev <- tabela_primerjav %>% gather("leto", "poraba", 2:11)
 tabela_obnovljivih_slo <- read_csv('podatki/proizvodnja_v_elektrarnah.csv',
                                    col_names=c("elektrarna","2002","2003","2004","2005","2006","2007",
                                                "2008","2009","2010","2011","2012","2013",
-                                               "2014","2015","2016","2017","2018"),skip=1, locale=locale(encoding='Windows-1250'))
+                                               "2014","2015","2016","2017","2018"),skip=3, locale=locale(encoding='Windows-1250'))
 
 tabela_obnovljivih_slo <- tabela_obnovljivih_slo[-c(3,4,5),]
 tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvodnja na pragu-SKUPAJ(GWh)"] <- "Skupaj (GWh)"
