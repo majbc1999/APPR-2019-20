@@ -26,17 +26,59 @@ source("lib/rstudio.r", encoding="UTF-8")
 
 # Izbira teme
 
-Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
+Pri projektu bom analiziral slovensko stanje v energetiki. Primerjal bom:
 
-![](slike/grb.png)
+- ceno elektrike in ceno zemeljskega plina, kako vplivata drug na  drugega, trende v gibanju cen
+
+- vpliv cen elektrike in plina na porabo gospodinjstev (ali cena vpliva na porabo gospodinjstev)
+
+- vpliv cen elektrike in plina na porabo drugih energetskih virov v gospodinjstvih
+
+Nato bom analiziral še povezavo Slovenije z drugimi svetovnimi državam, sicer v obnovljivih virih energije:
+
+- primerjal bom količino energije, proizvedeno iz obnovljivih virov
+
+- primerjal bom sestavo energije (po virih) iz leta 2016
+
+Iskal bom skupne lastnosti parametrov in poskusil sestaviti logičen razlog zanje.
+
+Podatke za Slovenijo sem dobil na SURS-u (https://pxweb.stat.si/SiStat), svetovne podatke pa na Wikipediji (https://en.wikipedia.org).
 
 ***
+
 
 # Obdelava, uvoz in čiščenje podatkov
 
 ```{r uvoz, echo=FALSE, message=FALSE}
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
+
+Iz statističnega urada sem uvozil podatke v obliki tabel CSV, z Wikipedije pa podatke v obliki HTML.
+Podatki so v štirih razpredelnicah oblike *tidy data*.
+
+1. `TD_cena_energentov` - podatki o gibanju cene nafte in plina
+  -`energent` - spremenljivka (nafta ali zemeljski plin)
+  -`leto in četrtletje` - spremenljivka (xyzwQa pomeni leto xyzw, a-to četrtletje)
+  -`cena (EUR/kWh)` - meritev (cena energenta v danem letu in četrtletju)
+
+2. `TD_poraba_gospodinjstev` - podatki o porabi gospodinjstev po energetskem viru
+  -`energetski vir` - spremenljivka (energetski vir)
+  -`leto` - spremenljivka (leto podatka)
+  -`poraba` - meritev (pove nam celotno porabo gospodinjstev za dan energetski vir in leto)
+  
+3. `TD_slo_obnovljivi` - podatki o proizvodnji obnovljivih virov glede na elektrarno za Slovenijo
+  -`elektrarna` - spremenljivka (vrsta elektrarne za obnovljiv vir)
+  -`leto` - spremenljivka (leto podatka)
+  -`proizvodnja (Gwh)`- meritev (skupna proizvodnja vrste elektraren v danem letu v GWh)
+
+4. `TD_svet_obnovljivi` - podatki o porabi obnovljivih virov glede na elektrarno za svet
+  -`države` - spremenljivka (dana država)
+  -`obnovljiva energija (GWh)` - meritev (celotna porabljena obnovljiva energija v GWh)
+  -`% obnovljive energije iz hidroelektrarn` - meritev ()
+  -`% obnovljive energije iz vetrnih elektrarn`
+  -`% obnovljive energije iz biomase in odpadkov`
+  -`% obnovljive energije iz sončne energije`
+  -`% obnovljive energije iz geotermalne energije`
 
 Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
 z Wikipedije. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
