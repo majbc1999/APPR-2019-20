@@ -57,75 +57,69 @@ Iz statističnega urada sem uvozil podatke v obliki tabel CSV, z Wikipedije pa p
 Podatki so v štirih razpredelnicah oblike *tidy data*.
 
 1. `TD_cena_energentov` - podatki o gibanju cene nafte in plina
-  -`energent` - spremenljivka (nafta ali zemeljski plin)
-  -`leto in četrtletje` - spremenljivka (xyzwQa pomeni leto xyzw, a-to četrtletje)
-  -`cena (EUR/kWh)` - meritev (cena energenta v danem letu in četrtletju)
+  - `energent` - spremenljivka (nafta ali zemeljski plin)
+  - `leto in četrtletje` - spremenljivka (xyzwQa pomeni leto xyzw, a-to četrtletje)
+  - `cena (EUR/kWh)` - meritev (cena energenta v danem letu in četrtletju)
 
 2. `TD_poraba_gospodinjstev` - podatki o porabi gospodinjstev po energetskem viru
-  -`energetski vir` - spremenljivka (energetski vir)
-  -`leto` - spremenljivka (leto podatka)
-  -`poraba` - meritev (pove nam celotno porabo gospodinjstev za dan energetski vir in leto)
+  - `energetski vir` - spremenljivka (energetski vir)
+  - `leto` - spremenljivka (leto podatka)
+  - `poraba` - meritev (pove nam celotno porabo gospodinjstev za dan energetski vir in leto)
   
 3. `TD_slo_obnovljivi` - podatki o proizvodnji obnovljivih virov glede na elektrarno za Slovenijo
-  -`elektrarna` - spremenljivka (vrsta elektrarne za obnovljiv vir)
-  -`leto` - spremenljivka (leto podatka)
-  -`proizvodnja (Gwh)`- meritev (skupna proizvodnja vrste elektraren v danem letu v GWh)
+  - `elektrarna` - spremenljivka (vrsta elektrarne za obnovljiv vir)
+  - `leto` - spremenljivka (leto podatka)
+  - `proizvodnja (Gwh)`- meritev (skupna proizvodnja vrste elektraren v danem letu v GWh)
 
 4. `TD_svet_obnovljivi` - podatki o porabi obnovljivih virov glede na elektrarno za svet
-  -`države` - spremenljivka (dana država)
-  -`obnovljiva energija (GWh)` - meritev (celotna porabljena obnovljiva energija v GWh)
-  -`% obnovljive energije iz hidroelektrarn` - meritev (kolikšen delež obnovljive energije pridobi iz HE)
-  -`% obnovljive energije iz vetrnih elektrarn` - meritev (kolikšen delež obnovljive energije pridobi iz vetrne energije)
-  -`% obnovljive energije iz biomase in odpadkov` - meritev (kolikšen delež obnovljive energije pridobi iz biomase in odpadkov)
-  -`% obnovljive energije iz sončne energije` - meritev (kolikšen delež obnovljive energije pridobi iz sončne energije)
-  -`% obnovljive energije iz geotermalne energije` - meritev (kolikšen delež obnovljive energije pridobi iz geotermalne energije)
+  - `države` - spremenljivka (dana država)
+  - `obnovljiva energija (GWh)` - meritev (celotna porabljena obnovljiva energija v GWh)
+  - `% obnovljive energije iz hidroelektrarn` - meritev (kolikšen delež obnovljive energije pridobi iz HE)
+  - `% obnovljive energije iz vetrnih elektrarn` - meritev (kolikšen delež obnovljive energije pridobi iz vetrne energije)
+  - `% obnovljive energije iz biomase in odpadkov` - meritev (kolikšen delež obnovljive energije pridobi iz biomase in odpadkov)
+  - `% obnovljive energije iz sončne energije` - meritev (kolikšen delež obnovljive energije pridobi iz sončne energije)
+  - `% obnovljive energije iz geotermalne energije` - meritev (kolikšen delež obnovljive energije pridobi iz geotermalne energije)
 
-Spodnji graf prikazuje porazdelitev števila naselij v občinah.
 
-```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram števila naselij v občinah'}
-ggplot(obcine, aes(x=naselja)) + geom_histogram() +
-  ggtitle("Pogostost števila naselij") + xlab("Število naselij") + ylab("Število občin")
-```
-
-***
-
-# Analiza in vizualizacija podatkov
-
-```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
-source("vizualizacija/vizualizacija.r", encoding="UTF-8")
-```
-
-Spodnji zemljevid prikazuje povprečno velikost družine za vsako občino.
-
-```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečnega števila otrok v družini'}
-ggplot() + geom_polygon(data=left_join(zemljevid, povprecja, by=c("OB_UIME"="obcina")),
-                        aes(x=long, y=lat, group=group, fill=povprecje)) +
-  ggtitle("Povprečno število otrok v družini") + xlab("") + ylab("") +
-  guides(fill=guide_colorbar(title="Povprečje"))
-```
-
-***
-
-# Napredna analiza podatkov
-
-```{r analiza, echo=FALSE, message=FALSE}
-source("analiza/analiza.r", encoding="UTF-8")
-```
-
-Spodnji graf prikazuje povezavo med številom naselij in površino občine.
-
-```{r graf, echo=FALSE, fig.align='center', fig.cap='Povezava med številom naselij in površino občine'}
-ggplot(inner_join(obcine, data.frame(obcina=names(skupine),
-                                     skupina=factor(skupine)), by="obcina")
-, aes(x=povrsina, y=naselja, color=skupina, size=prebivalci/1000)) + geom_point() +
-  ggtitle("Število naselij glede na površino občine") +
-  xlab(expression("Površina (km"^2 * ")")) + ylab("Št. naselij") +
-  guides(color=guide_legend(title="Skupina"),
-         size=guide_legend(title="Prebivalci (* 1000)"))
-```
-
-***
-
-```{r shiny, echo=FALSE}
-shinyAppDir("shiny", options=list(width="100%", height=600))
-```
+#***
+#
+## Analiza in vizualizacija podatkov
+#
+#```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+#source("vizualizacija/vizualizacija.r", encoding="UTF-8")
+#```
+#
+#Spodnji zemljevid prikazuje povprečno velikost družine za vsako občino.
+#
+#```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečnega števila otrok v družini'}
+#ggplot() + geom_polygon(data=left_join(zemljevid, povprecja, by=c("OB_UIME"="obcina")),
+#                        aes(x=long, y=lat, group=group, fill=povprecje)) +
+#  ggtitle("Povprečno število otrok v družini") + xlab("") + ylab("") +
+#  guides(fill=guide_colorbar(title="Povprečje"))
+#```
+#
+#***
+#
+## Napredna analiza podatkov
+#
+#```{r analiza, echo=FALSE, message=FALSE}
+#source("analiza/analiza.r", encoding="UTF-8")
+#```
+#
+#Spodnji graf prikazuje povezavo med številom naselij in površino občine.
+#
+#```{r graf, echo=FALSE, fig.align='center', fig.cap='Povezava med številom naselij in površino občine'}
+#ggplot(inner_join(obcine, data.frame(obcina=names(skupine),
+#                                     skupina=factor(skupine)), by="obcina")
+#, aes(x=povrsina, y=naselja, color=skupina, size=prebivalci/1000)) + geom_point() +
+#  ggtitle("Število naselij glede na površino občine") +
+#  xlab(expression("Površina (km"^2 * ")")) + ylab("Št. naselij") +
+#  guides(color=guide_legend(title="Skupina"),
+#         size=guide_legend(title="Prebivalci (* 1000)"))
+#```
+#
+#***
+#
+#```{r shiny, echo=FALSE}
+#shinyAppDir("shiny", options=list(width="100%", height=600))
+#```
