@@ -56,9 +56,9 @@ source("uvoz/uvoz.r", encoding="UTF-8")
 Iz statističnega urada sem uvozil podatke v obliki tabel CSV, z Wikipedije pa podatke v obliki HTML.
 Podatki so v štirih razpredelnicah oblike *tidy data*.
 
-1. `TD_cena_energentov` - podatki o gibanju cene nafte in plina
-  - `energent` - spremenljivka (nafta ali zemeljski plin)
-  - `leto_in_cetrtletje` - spremenljivka (xyzwQa pomeni leto xyzw, a-to četrtletje)
+1. `TD_cena_energentov` - podatki o gibanju cene elektrike in plina
+  - `energent` - spremenljivka (eletrična energija ali zemeljski plin)
+  - `leto_in_cetrtletje` - spremenljivka (če je za decimalnim mestom: 0 - 1. četrtletje, 0.25 - 2. četrtletje, 0.5 - 3. četrtletje, 0.75 - 4. četrtletje)
   - `cena_(EUR/kWh)` - meritev (cena energenta v danem letu in četrtletju)
 
 2. `TD_poraba_gospodinjstev` - podatki o porabi gospodinjstev po energetskem viru
@@ -87,11 +87,12 @@ Podatki so v štirih razpredelnicah oblike *tidy data*.
 ```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
-## Gibanje cene nafte in zemeljskega plina
+## Gibanje cene elektrike in zemeljskega plina
 
-V spodnjih grafih si bomo ogledali gibanje cene nafte in zemeljskega plina v času. Zanimali nas bodo vzorci gibanja (ponavljajoči), vpliv letnega časa na ceno, korelacija med cenama energentov.
+V spodnjih grafih si bomo ogledali gibanje cene elektrike in zemeljskega plina v času. Zanimali nas bodo vzorci gibanja (ponavljajoči), vpliv letnega časa na ceno, korelacija med cenama energentov.
 
-Prvi graf nam prikazuje gibanje cene nafte in zemeljskega plina skozi čas.
+Prvi graf nam prikazuje gibanje cene elektrike in zemeljskega plina skozi čas. Vidimo lahko, da je cena električne energije konstantno višja od cene zemeljskega plina. Če si podrobno ogledamo drugi graf, vidimo, da povezave med cenama obeh energentov praktično ni. Kljub temu, da lahko v zadnjih nekaj letih zaznamo enakomerno nihanje cene skozi leto (v tretjem četrtletju je razlika v cenah najvišja, v prvem četrtletju pa najnižja), pa ne moremo narediti gotovih sklepov glede vpliva enega na drugega. V letih od 2012 do 2016 je namreč nihanje neenakomerno in nepravilno. 
 
-```{r graficenenafteinplina, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'} 
+```{r graficeneelektrikeinplina, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'} 
 print(graf1)
+print(graf2)
