@@ -87,6 +87,11 @@ Podatki so v štirih razpredelnicah oblike *tidy data*.
 ```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
+## Gibanje cene nafte in zemeljskega plina
 
-```{r graficenenafte, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'} 
+V spodnjih grafih si bomo ogledali gibanje cene nafte in zemeljskega plina v času. Zanimali nas bodo vzorci gibanja (ponavljajoči), vpliv letnega časa na ceno, korelacija med cenama energentov.
+
+Prvi graf nam prikazuje gibanje cene nafte in zemeljskega plina skozi čas.
+
+```{r graficenenafteinplina, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'} 
 print(graf1)
