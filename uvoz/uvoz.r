@@ -10,7 +10,7 @@ cene_elektrike <- read_csv('podatki/cena_elektricna_energija.csv',
                                          2019.75),skip=3, locale=locale(encoding='Windows-1250'))
 
 cene_elektrike$drugi <- NULL
-cene_elektrike$energent[cene_elektrike$energent == "Slovenija"] <- "Elekrična energija"
+cene_elektrike$energent[cene_elektrike$energent == "Slovenija"] <- "Električna energija"
 
 cene_plina <- read_csv('podatki/cena_zemeljski_plin.csv',
                        col_names=c("energent", "enota", "drugi", 2012,2012.25,2012.5,2012.75,
