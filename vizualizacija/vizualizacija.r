@@ -25,4 +25,8 @@ graf1 <- ggplot(data=TD_cena_energentov, aes(x=leto_in_cetrtletje, y=`cena_(EUR/
 
 
 graf2 <- ggplot(data=primerjava_cen, aes(x=leto, y=razlika)) + 
-  geom_path(color="blue") + xlab('leto') + ylab('cena elektrike - cena plina (EUR/kWh)') + ggtitle('Razlika cen elektrike in plina skozi čas')
+  geom_path(size=2, color="blue") + xlab('leto') + ylab('cena elektrike - cena plina (EUR/kWh)') + ggtitle('Razlika cen elektrike in plina skozi čas')
+
+#graf3 <- napredna analiza
+
+
