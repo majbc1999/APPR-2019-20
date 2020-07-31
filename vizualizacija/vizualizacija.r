@@ -29,4 +29,9 @@ graf2 <- ggplot(data=primerjava_cen, aes(x=leto, y=razlika)) +
 
 #graf3 <- napredna analiza
 
+graf4 <- ggplot(data=TD_poraba_gospodinjstev %>% filter(
+  energetski_vir == "	Utekočinjeni naftni plin (t)" | energetski_vir == "Premog (t)" | 
+  energetski_vir == "Lesni sekanci, briketi in ostanki (t)" | energetski_vir == "Lesni peleti (t)" |
+  energetski_vir == "Ekstra lahko kurilno olje (t)" | energetski_vir == "Drva - polena (t)"), aes(x=leto, y=poraba, fill=energetski_vir)) + 
+  geom_bar(stat="identity") + xlab('leto') + ylab('letna poraba (t)') + ggtitle('Poraba energetskih virov skozi čas')
 
