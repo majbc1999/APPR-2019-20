@@ -91,7 +91,11 @@ source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 
 V spodnjih grafih si bomo ogledali gibanje cene elektrike in zemeljskega plina v času. Zanimali nas bodo vzorci gibanja (ponavljajoči), vpliv letnega časa na ceno, korelacija med cenama energentov.
 
-Prvi graf nam prikazuje gibanje cene elektrike in zemeljskega plina skozi čas. Vidimo lahko, da je cena električne energije konstantno višja od cene zemeljskega plina. Če si podrobno ogledamo drugi graf, vidimo, da povezave med cenama obeh energentov praktično ni. Kljub temu, da lahko v zadnjih nekaj letih zaznamo enakomerno nihanje cene skozi leto (v tretjem četrtletju je razlika v cenah najvišja, v prvem četrtletju pa najnižja), pa ne moremo narediti gotovih sklepov glede vpliva enega na drugega. V letih od 2012 do 2016 je namreč nihanje neenakomerno in nepravilno. 
+Prvi graf nam prikazuje gibanje cene elektrike in zemeljskega plina skozi čas. Vidimo lahko, da je cena električne energije konstantno višja od cene zemeljskega plina. 
+
+V drugem grafu sem iskal primerjavo gibanja cen obeh energentov skoti čas. To sem storil tako, da sem odštel ceno plina od cene eletrike in iskal vzorce. Če si ga podrobno, vidimo, da povezave (ali kakšnega pravila) med cenama obeh energentov ni. Kljub temu, da lahko v zadnjih nekaj letih zaznamo enakomerno nihanje cene skozi leto (v tretjem četrtletju je razlika v cenah najvišja, v prvem četrtletju pa najnižja), pa ne moremo narediti gotovih sklepov glede vpliva enega na drugega. V letih od 2012 do 2016 je namreč nihanje preveč neenakomerno in nepravilno. Enakomeren vzorec bomo torej pripisali slučaju.
+
+Tretji graf nam prikazuje napoved cen elektrike in zemeljskega plina še za prihodnost.
 
 ```{r graficeneelektrikeinplina, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'} 
 print(graf1)
