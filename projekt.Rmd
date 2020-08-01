@@ -104,9 +104,32 @@ print(graf2)
 
 ## Poraba gospodinjstev po energentskem viru
 
-Ker se porabo različnih energetskih virov meri v različnih enotah (tonah, GWh, ...), sem se odločil, da bom naredil tri grafe. V prvem grafu (histogramu) so tako vsi energetski viri, ki jih merimo v tonah (po masi). Iz njega lahko razberemo, da so gospodinjstva skozi vsa leta največ "kurili" na drva (polena), čeprav se količina vendarle počasi, a vztrajno zmanjšuje. Prav tako je vse manjša poraba ekstra lahkega kurilnega olja. Povečuje pa se predvsem poraba lesnih peletov in lesnih sekancev. Čeprav je poraba drastično nižja od denimo porabe drv, lahko v prihodnosti zaradi večje efektivnosti peletov in sekancev pričakujemo, da bodo le-ti v veliki meri nadomestili drva oz. polena. Delež premoga je bil praktično skozi vsa leta zanemarljivo majhen. 
+Ker se porabo različnih energetskih virov meri v različnih enotah (tonah, GWh, ...), sem se odločil, da bom dva grafa. V prvem grafu (histogramu) so tako vsi energetski viri, ki jih merimo v tonah (po masi). Iz njega lahko razberemo, da so gospodinjstva skozi vsa leta največ "kurili" na drva (polena), čeprav se količina vendarle počasi, a vztrajno zmanjšuje. Prav tako je vse manjša poraba ekstra lahkega kurilnega olja. Povečuje pa se predvsem poraba lesnih peletov in lesnih sekancev. Čeprav je poraba drastično nižja od denimo porabe drv, lahko v prihodnosti zaradi večje efektivnosti peletov in sekancev pričakujemo, da bodo le-ti v veliki meri nadomestili drva oz. polena. Delež premoga je bil praktično skozi vsa leta zanemarljivo majhen, delež utekočinjenega naftnega plina pa se ni bistveno spreminjal.
+
+Na drugem grafu lahko vidimo, da se uporablja manj in manj daljinske toplote, povečuje pa se delež toplote iz okolice. Količina sončne energije se ni bistveno spremenila.
+
+Glede na to, da se količina porabe elekrične energije in zemeljskega plina ni pretirano spreminjala, sem se odločil, da ne bom risal grafov zanju.
+
 ```{r grafiporabegospodinjstev, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
 print(graf4)
+print(graf5)
+```
+
+Tukaj bo še nekaj iz napredne analize, ne vem natanko kaj.
+
+## Proizvodnja slovenskih elektrarn (samo obnovljiva energija)
+
+Ko sem iskal podatke, sem našel celice, ki niso imele numeričnih vrednosti, temveč samo '-'. Da so podatki primerni za analizo, sem v tabelah vrednosti '-' zamenjal z vrednostjo 0. 
+
+V prvem spodnjem grafu sem želel prikazati spreminjanje obnovljive energije skozi leta. Vidimo lahko, da se skupna količina pridelane obnovljive energije vztrajno povečuje (z rahlimi izjemami). Vse to je plot vedno večje okoljske zavednosti ljudi in zelene politike, ki naj bi spodbujala večjo uporabo obnovljivih virov, namesto okolju škodljivih. 
+
+Vidimo, da se delež energije iz termoelektrarn in jedrskih elektrarn ni bistveno spreminjal. Delež energije iz hidroelektrarn se je le malo povečal. Delež iz vetrnih in sončnih elektrarn je zanemarljivo majhen (čeprav se predvsem delež sončne energije od leta 2010 vztrajno povečuje).
+
+Za boljše viden delež proizvodnje po elektrarnah je pod grafom še tortni diagram za leto 2018.
+
+```{r grafiproizvodnje elektrike, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+print(graf7)
+print(graf8)
 ```
 
 
