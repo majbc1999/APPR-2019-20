@@ -55,10 +55,10 @@ tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvod
 tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvodnja na pragu-termoelektrarne (GWh)"] <- "Termoelektrarne (GWh)"
 tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvodnja na pragu-hidroelektrarne-SKUPAJ (GWh)"] <- "Hidroelektrarne (GWh)"
 tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvodnja na pragu-jedrska elektrarna (GWh)"] <- "Jedrske elektrarne (GWh)"
-tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvodnja na pragu-son?ne elektrarne (GWh)"] <- "Sončne elektrarne (GWh)"
+tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvodnja na pragu-sončne elektrarne (GWh)"] <- "Sončne elektrarne (GWh)"
 tabela_obnovljivih_slo$elektrarna[tabela_obnovljivih_slo$elektrarna == "Proizvodnja na pragu-vetrne elektrarne (GWh)"] <- "Vetrne elektrarne (GWh)"
 
-TD_slo_obnovljivi <- tabela_obnovljivih_slo %>% gather("leto", "proizvodnja_(Gwh)", 2:18)
+TD_slo_obnovljivi <- tabela_obnovljivih_slo %>% gather("leto", "proizvodnja_(GWh)", 2:18)
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
 # ANALIZA PORABE OBNOVLJIVIH VIROV ENERGIJE DRŽAV SVETA (html)
