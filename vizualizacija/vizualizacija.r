@@ -12,7 +12,11 @@ TD_slo_obnovljivi[is.na(TD_slo_obnovljivi)] <- 0
 
 TD_world_obnovljivi$`obnovljiva_energija_(GWh)` <- as.numeric(gsub(",","",TD_world_obnovljivi$`obnovljiva_energija_(GWh)`))
 TD_world_obnovljivi$`%_obnovljive_energije_iz_hidroelektrarn` <- as.numeric(gsub("%","",TD_world_obnovljivi$`%_obnovljive_energije_iz_hidroelektrarn`))
-
+TD_world_obnovljivi$`%_obnovljive_energije_iz_vetrnih elektrarn` <- as.numeric(gsub("%","",TD_world_obnovljivi$`%_obnovljive_energije_iz_vetrnih elektrarn`))
+TD_world_obnovljivi$`%_obnovljive_energije_iz_biomase_in_odpadkov` <- as.numeric(gsub("%","",TD_world_obnovljivi$`%_obnovljive_energije_iz_biomase_in_odpadkov`))
+TD_world_obnovljivi$`%_obnovljive_energije_iz_sončne energije` <- as.numeric(gsub("%","",TD_world_obnovljivi$`%_obnovljive_energije_iz_sončne energije`))
+TD_world_obnovljivi$`%_obnovljive_energije_iz_geotermalne_energije` <- as.numeric(gsub("%","",TD_world_obnovljivi$`%_obnovljive_energije_iz_geotermalne_energije`))
+TD_world_obnovljivi[is.na(TD_world_obnovljivi)] <- 0
 
 # Ustvarjanje novih podatkov
 samo_elektrika <- TD_cena_energentov %>% filter(energent == "Električna energija")
@@ -23,6 +27,34 @@ primerjava_cen <- merge(samo_elektrika,samo_plin,by="leto")
 primerjava_cen[,c(2,4)] <- NULL
 primerjava_cen$razlika <- with(primerjava_cen, cena_elektrika - cena_plin)
 
+TD_world_obnovljivi[,"prevladujoči vir"] <- NA
+
+for (vrstica in 1:nrow(TD_world_obnovljivi)) {
+  he <- TD_world_obnovljivi[vrstica, "%_obnovljive_energije_iz_hidroelektrarn"]
+  ve <- TD_world_obnovljivi[vrstica, "%_obnovljive_energije_iz_vetrnih elektrarn"]
+  bm <- TD_world_obnovljivi[vrstica, "%_obnovljive_energije_iz_biomase_in_odpadkov"]
+  se <- TD_world_obnovljivi[vrstica, "%_obnovljive_energije_iz_sončne energije"]
+  ge <- TD_world_obnovljivi[vrstica, "%_obnovljive_energije_iz_geotermalne_energije"]
+  if(he > ve & he > bm & he > se & he > ge){
+    TD_world_obnovljivi[vrstica, "prevladujoči vir"] <- "Hidroenergija"
+  }
+  if(ve > he & ve > bm & ve > se & ve > ge){
+    TD_world_obnovljivi[vrstica, "prevladujoči vir"] <- "Vetrna energija"
+  }
+  if(bm > ve & bm > he & bm > se & bm > ge){
+    TD_world_obnovljivi[vrstica, "prevladujoči vir"] <- "Biomasa in odpadki"
+  }
+  if(se > ve & se > bm & se > he & se > ge){
+    TD_world_obnovljivi[vrstica, "prevladujoči vir"] <- "Sončna energija"
+  }
+  if(ge > ve & ge > bm & ge > se & ge > he){
+    TD_world_obnovljivi[vrstica, "prevladujoči vir"] <- "Geotermalna energija"
+  }
+}
+
+TD_world_obnovljivi[is.na(TD_world_obnovljivi)] <- "Ni prevladujočega vira"
+
+paleta1 = c("#5a1f1b","#3ee84c","#5285b9","#d5c7c7","#f9ff00","#f57822", "#d5c7c7")
 
 # Tukaj so sedaj grafi
 
@@ -65,12 +97,16 @@ graf8 <- ggplot(data = TD_slo_obnovljivi %>% filter(
   axis.ticks = element_blank(), panel.grid  = element_blank(), axis.title.x = element_blank(),
   axis.title.y = element_blank())
 
-zemljevid1 <- tm_shape(merge(zemljevid, TD_world_obnovljivi %>% group_by(drzave), by.x="SOVEREIGNT", by.y="drzave")) +
+zemljevid1 <- tm_shape(merge(zemljevid, TD_world_obnovljivi %>% group_by(drzave), by.x="SOVEREIGNT", by.y="drzave"), xlim=c(-170,200), ylim=c(-65,85)) +
   tm_polygons("obnovljiva_energija_(GWh)", style = "kmeans", legend.hist = TRUE) + 
   tm_layout(legend.outside = TRUE, main.title = "Celotna pridelana obnovljiva energija")
 
-zemljevid2 <- tm_shape(merge(zemljevid, TD_world_obnovljivi %>% group_by(drzave), by.x="SOVEREIGNT", by.y="drzave")) +
+zemljevid2 <- tm_shape(merge(zemljevid, TD_world_obnovljivi %>% group_by(drzave), by.x="SOVEREIGNT", by.y="drzave"), xlim=c(-170,200), ylim=c(-65,85)) +
   tm_polygons("%_obnovljive_energije_iz_hidroelektrarn", style = "fixed", breaks = c(0, 20, 40, 60, 80, 100), palette = "Blues") + 
   tm_layout(legend.outside = TRUE, main.title = "Odstotek obnovljive energije iz hidroelektrarn")
+
+zemljevid3 <- tm_shape(merge(zemljevid, TD_world_obnovljivi %>% group_by(drzave), by.x="SOVEREIGNT", by.y="drzave"), xlim=c(-25,60), ylim=c(-45,72)) +
+  tm_polygons(col = "prevladujoči vir", palette = paleta1) + tm_layout(legend.outside = TRUE, legend.text.size = 0.54, main.title = "Prevladujoči vir obnovljive energije")
+
 
 
