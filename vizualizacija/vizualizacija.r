@@ -10,6 +10,10 @@ TD_cena_energentov$leto_in_cetrtletje <- as.numeric(as.character(TD_cena_energen
 TD_slo_obnovljivi$`proizvodnja_(GWh)` <- as.numeric(as.character(TD_slo_obnovljivi$`proizvodnja_(GWh)`))
 TD_slo_obnovljivi[is.na(TD_slo_obnovljivi)] <- 0
 
+TD_world_obnovljivi$`obnovljiva_energija_(GWh)` <- as.numeric(gsub(",","",TD_world_obnovljivi$`obnovljiva_energija_(GWh)`))
+TD_world_obnovljivi$`%_obnovljive_energije_iz_hidroelektrarn` <- as.numeric(gsub("%","",TD_world_obnovljivi$`%_obnovljive_energije_iz_hidroelektrarn`))
+
+
 # Ustvarjanje novih podatkov
 samo_elektrika <- TD_cena_energentov %>% filter(energent == "Električna energija")
 names(samo_elektrika) <- c("energent", "leto", "cena_elektrika")
@@ -60,3 +64,13 @@ graf8 <- ggplot(data = TD_slo_obnovljivi %>% filter(
   ggtitle('Tortni diagram za proizvodnjo obnovljive energije z odstotki za leto 2018') + theme(axis.text = element_blank(),
   axis.ticks = element_blank(), panel.grid  = element_blank(), axis.title.x = element_blank(),
   axis.title.y = element_blank())
+
+zemljevid1 <- tm_shape(merge(zemljevid, TD_world_obnovljivi %>% group_by(drzave), by.x="SOVEREIGNT", by.y="drzave")) +
+  tm_polygons("obnovljiva_energija_(GWh)", style = "kmeans", legend.hist = TRUE) + 
+  tm_layout(legend.outside = TRUE, main.title = "Celotna pridelana obnovljiva energija")
+
+zemljevid2 <- tm_shape(merge(zemljevid, TD_world_obnovljivi %>% group_by(drzave), by.x="SOVEREIGNT", by.y="drzave")) +
+  tm_polygons("%_obnovljive_energije_iz_hidroelektrarn", style = "fixed", breaks = c(0, 20, 40, 60, 80, 100), palette = "Blues") + 
+  tm_layout(legend.outside = TRUE, main.title = "Odstotek obnovljive energije iz hidroelektrarn")
+
+
