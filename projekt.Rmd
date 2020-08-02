@@ -132,6 +132,23 @@ print(graf7)
 print(graf8)
 ```
 
+## Obnovljivi viri po svetu
+
+Celotna proizvedena obnovljiva energija države nam sicer ne pove veliko, saj imajo večje države praviloma večjo proizvedeno obnovljivo energijo kot manjše države. Tako ima na primer ZDA več proizvedene obnovljive energije kot Islandija. Vseeno pa je Islandija precej bolj "zelena" država, saj ima skoraj 100% celotne energije obnovljive. Bolj smisleno bi bilo primerjati podatek o GWh obnovljive energije na prebivalca ali pa odstotna vrednost obnovljive energije napram vsej proizvedeni energiji.
+
+Vseeno sem v prvem zemljevidu države pobarval glede na njihovo količino proizvedene obnovljive energije. Za razporeditev barv sem vzel argument `style = "kmeans"`, saj mi je default legenda pobarvala vse države z enako barvo, razen ZDA in Kitajske. 
+
+Tako lahko opazimo, da veliko obnovljive energije proizvedejo razvitejše države (ZDA, Evropska Unija), manj pa tiste, ki so še v razvoju (Vzhodna Evropa, Afrika).
+
+```{r zemljevid1, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.width=10, fig.height=7}
+print(zemljevid1)
+```
+
+V drugem zemljevidu (spodaj) sem pobarval države glede na delež energije iz hidroelektrarn napram celotni obnovljivi energiji. Pričakovano imajo največji delež države, ki imajo precej padavin (Ekvatorialna Afrika) in tiste z velikimi rekami (elektrarne na reki Nil v Egiptu). Manj so hidroelektrarne v uporabi tam, kjer je veliko suše (Avstralija, Saharska Afrika), ali pa so padavine tam nekonstantno razporejene skozi leto (Indija). 
+
+```{r zemljevid2, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.width=10, fig.height=7}
+print(zemljevid2)
+```
 
 
 
