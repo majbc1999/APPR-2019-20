@@ -296,4 +296,9 @@ slovar <- c("Afghanistan" = "Afganistan",
 
 TD_svet_obnovljivi <- tabela_porabe_drzav %>% mutate(drzave=slovar[drzave])
 
-  
+tabela_porabe_drzav$drzave[tabela_porabe_drzav$drzave == "United States"] <- "United States of America"
+tabela_porabe_drzav$drzave[tabela_porabe_drzav$drzave == "Tanzania"] <- "United Republic of Tanzania"
+tabela_porabe_drzav$drzave[tabela_porabe_drzav$drzave == "Serbia"] <- "Republic of Serbia"
+
+
+TD_world_obnovljivi <- tabela_porabe_drzav
