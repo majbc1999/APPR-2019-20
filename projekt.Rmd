@@ -150,5 +150,12 @@ V drugem zemljevidu (spodaj) sem pobarval države glede na delež energije iz hi
 print(zemljevid2)
 ```
 
+V tretjem zemljevidu sem nato primerjal države po tem, kateri od obnovljivih virov energije je prevladujoč. Če je naprimer v državi največji odstotek hidroenergije, je ta v grafu obarvana z modro barvo. Osredotočil sem se na države Evrope in Afrike, saj drugod po svetu v veliki meri prevladuje samo hidroenergija. 
+
+Tudi v Evropi in Afriki je največ hidroenergije. V evropskih ravninskih državah (Velika Britanija, Nemčija, Poljska) s pridom izkoriščajo vetrno energijo, saj je vetra tu največ. Največ energije od biomase in odpadkov dobijo tiste evropske države, ki nimajo pravih pogojev za hidroelektrarne in so večinoma brez vetra. V Saharski Afriki države največ obnovljive energije dobijo iz sončnih elektrarn. Tu je namreč sonce precej močno in je veliko časa na nebu (ni padavin). Edina država, v kateri prevladuje geotermalna energija, je Kenija. Tam je bilo namreč v preteklosti precej vulkansko aktivno območje. 
+
+```{r zemljevid3, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+print(zemljevid3)
+```
 
 
