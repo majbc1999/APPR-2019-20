@@ -299,6 +299,9 @@ TD_svet_obnovljivi <- tabela_porabe_drzav %>% mutate(drzave=slovar[drzave])
 tabela_porabe_drzav$drzave[tabela_porabe_drzav$drzave == "United States"] <- "United States of America"
 tabela_porabe_drzav$drzave[tabela_porabe_drzav$drzave == "Tanzania"] <- "United Republic of Tanzania"
 tabela_porabe_drzav$drzave[tabela_porabe_drzav$drzave == "Serbia"] <- "Republic of Serbia"
-
+tabela_porabe_drzav$drzave[tabela_porabe_drzav$drzave == "North Macedonia"] <- "Republic of North Macedonia"
+tabela_porabe_drzav$drzave[tabela_porabe_drzav$drzave == "Djibouti"] <- "Republic of Djibouti"
+tabela_porabe_drzav$drzave[tabela_porabe_drzav$drzave == "Guinea Bissau"] <- "Republic of Guinea-Bissau"
+tabela_porabe_drzav$drzave[tabela_porabe_drzav$drzave == "Eswatini (Swaziland)"] <- "Swaziland"
 
 TD_world_obnovljivi <- tabela_porabe_drzav
