@@ -16,6 +16,8 @@ library(maptools)
 library(extrafont)
 library(tmap)
 library(scales)
+library(mgcv)
+library(GGally)
 
 
 options(gsubfn.engine="R")
