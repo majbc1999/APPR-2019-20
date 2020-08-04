@@ -87,6 +87,12 @@ Podatki so v štirih razpredelnicah oblike *tidy data*.
 ```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
+
+```{r analiza, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
+#uvoz grafov in rezultatov
+source("analiza/analiza.r", encoding="UTF-8")
+```
+
 ## Gibanje cene elektrike in zemeljskega plina
 
 V spodnjih grafih si bomo ogledali gibanje cene elektrike in zemeljskega plina v času. Zanimali nas bodo vzorci gibanja (ponavljajoči), vpliv letnega časa na ceno, korelacija med cenama energentov.
@@ -101,6 +107,13 @@ Tretji graf nam prikazuje napoved cen elektrike in zemeljskega plina še za prih
 print(graf1)
 print(graf2)
 ```
+
+Spodaj pa lahko vidimo predikcijski model, kako naj bi se cene elektrike in plina gibale v prihodnosti.  Model je baziran na podlagi linearne regresije. Vidimo lahko, da bo cena elektrike v naslednjih letih kar nekoliko stagnirala, medtem ko bo cena zemeljskega plina padala.
+
+```{r graficeneelektrikeinplina2, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'} 
+print(graf3)
+```
+
 
 ## Poraba gospodinjstev po energentskem viru
 
