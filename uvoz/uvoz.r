@@ -29,7 +29,13 @@ tabela_cen_energentov <- rbind(cene_elektrike, cene_plina)
 TD_cena_energentov <- tabela_cen_energentov %>% gather("leto_in_cetrtletje", "cena_(EUR/kWh)", 2:33)
 
 
+elektrika_TDa <- TD_cena_energentov %>% filter(energent=="Električna energija", leto_in_cetrtletje == 2012| leto_in_cetrtletje == 2013| leto_in_cetrtletje == 2014| leto_in_cetrtletje == 2015|
+                                               leto_in_cetrtletje == 2016| leto_in_cetrtletje == 2017| leto_in_cetrtletje == 2018| leto_in_cetrtletje == 2019)
+elektrika_TDa$energent <- NULL
 
+plin_TDa <- TD_cena_energentov %>% filter(energent=="Zemeljski plin", leto_in_cetrtletje == 2012| leto_in_cetrtletje == 2013| leto_in_cetrtletje == 2014| leto_in_cetrtletje == 2015|
+                                            leto_in_cetrtletje == 2016| leto_in_cetrtletje == 2017| leto_in_cetrtletje == 2018| leto_in_cetrtletje == 2019)
+plin_TDa$energent <- NULL
 #--------------------------------------------------------------------------------------------------------------------------------------------------------
 # ANALIZA PRIMERJAVE PORABE PO GOSPODINJSTVIH
 
