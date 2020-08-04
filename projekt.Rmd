@@ -140,13 +140,13 @@ Vseeno sem v prvem zemljevidu države pobarval glede na njihovo količino proizv
 
 Tako lahko opazimo, da veliko obnovljive energije proizvedejo razvitejše države (ZDA, Evropska Unija), manj pa tiste, ki so še v razvoju (Vzhodna Evropa, Afrika).
 
-```{r zemljevid1, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.width=10, fig.height=7}
+```{r zemljevid1, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.width=15, fig.height=5}
 print(zemljevid1)
 ```
 
 V drugem zemljevidu (spodaj) sem pobarval države glede na delež energije iz hidroelektrarn napram celotni obnovljivi energiji. Pričakovano imajo največji delež države, ki imajo precej padavin (Ekvatorialna Afrika) in tiste z velikimi rekami (elektrarne na reki Nil v Egiptu). Manj so hidroelektrarne v uporabi tam, kjer je veliko suše (Avstralija, Saharska Afrika), ali pa so padavine tam nekonstantno razporejene skozi leto (Indija). 
 
-```{r zemljevid2, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.width=10, fig.height=7}
+```{r zemljevid2, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.width=15, fig.height=5}
 print(zemljevid2)
 ```
 
