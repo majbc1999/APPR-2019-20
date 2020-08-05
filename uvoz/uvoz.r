@@ -298,7 +298,14 @@ slovar <- c("Afghanistan" = "Afganistan",
             "Uzbekistan" = "Uzbekistan", 
             "Vanuatu" = "Vanuatu", 
             "Venezuela" = "Venezuela", 
-            "Vietnam" = "Vietnam") 
+            "Vietnam" = "Vietnam",
+            "United States of America" = "ZDA",
+            "United Republic of Tanzania" = "Tanzanija",
+            "Republic of Serbia" = "Srbija",
+            "Republic of North Macedonia" = "Severna Makedonija",
+            "Republic of Djibouti" = "Džibuti",
+            "Republic of Guinea-Bissau" = "Gvineja Bissau",
+            "Swaziland" = "Svazi") 
 
 TD_svet_obnovljivi <- tabela_porabe_drzav %>% mutate(drzave=slovar[drzave])
 
