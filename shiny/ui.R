@@ -1,17 +1,7 @@
 library(shiny)
 
+
 shinyUI(fluidPage(
-  
-  titlePanel("Slovenske občine"),
-  
-  tabsetPanel(
-      tabPanel("Velikost družine",
-               DT::dataTableOutput("druzine")),
-      
-      tabPanel("Število naselij",
-               sidebarPanel(
-                  uiOutput("pokrajine")
-                ),
-               mainPanel(plotOutput("naselja")))
-    )
-))
+  titlePanel("Obnovljivi viri po svetu"), 
+  DT::dataTableOutput("TD_world_obnovljivi"))
+)
