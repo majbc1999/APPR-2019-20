@@ -18,7 +18,7 @@ library(tmap)
 library(scales)
 library(mgcv)
 library(GGally)
-
+library(gridExtra)
 
 options(gsubfn.engine="R")
 
