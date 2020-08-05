@@ -71,12 +71,17 @@ graf4 <- ggplot(data=TD_poraba_gospodinjstev %>% filter(
   energetski_vir == "Utekočinjeni naftni plin (t)" | energetski_vir == "Premog (t)" | 
   energetski_vir == "Lesni sekanci, briketi in ostanki (t)" | energetski_vir == "Lesni peleti (t)" |
   energetski_vir == "Ekstra lahko kurilno olje (t)" | energetski_vir == "Drva - polena (t)"), aes(x=leto, y=poraba, fill=energetski_vir)) + 
-  geom_bar(stat="identity") + xlab('leto') + ylab('letna poraba (t)') + ggtitle('Poraba energetskih virov skozi čas')
+  geom_bar(stat="identity") + xlab('leto') + ylab('letna poraba (t)') + ggtitle('Poraba energetskih virov skozi čas') +
+  scale_fill_manual("legend", values = c("Utekočinjeni naftni plin (t)" = "#4C1D87", "Premog (t)" = "#FFBCFD", 
+                                         "Lesni sekanci, briketi in ostanki (t)" = "#FFDC92", "Lesni peleti (t)"= "#DA9234",
+                                         "Ekstra lahko kurilno olje (t)" = "#FF6000", "Drva - polena (t)" = "#926CB3"))
 
 graf5 <- ggplot(data=TD_poraba_gospodinjstev %>% filter(
   energetski_vir == "Toplota iz okolice (TJ)" | energetski_vir == "Sončna energija (TJ)" | 
   energetski_vir == "Daljinska toplota (TJ)"), aes(x=leto, y=poraba, fill=energetski_vir)) + 
-  geom_bar(stat="identity") + xlab('leto') + ylab('letna poraba (TJ)') + ggtitle('Poraba energetskih virov skozi čas')
+  geom_bar(stat="identity") + xlab('leto') + ylab('letna poraba (TJ)') + ggtitle('Poraba energetskih virov skozi čas') +
+  scale_fill_manual("legend", values = c("Toplota iz okolice (TJ)" = "#173F5F", "Sončna energija (TJ)" = "#20639B", "Daljinska toplota (TJ)" = "#3CAEA3"))
+
 
 #graf6 <- napredna analiza
 
