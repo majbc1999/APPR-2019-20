@@ -26,19 +26,19 @@ source("lib/rstudio.r", encoding="UTF-8")
 
 # Izbira teme
 
-Pri projektu bom analiziral slovensko stanje v energetiki. Primerjal bom:
+Pri projektu bom analiziral slovensko stanje v energetiki. Analiziral bom:
 
-- ceno elektrike in ceno zemeljskega plina, kako vplivata drug na  drugega, trende v gibanju cen
+- ceno elektrike in ceno zemeljskega plina, kako vplivata drug na drugega, trende v gibanju cen
 
-- vpliv cen elektrike in plina na porabo gospodinjstev (ali cena vpliva na porabo gospodinjstev)
+- porabo energije gospodinjstev po energetskih virih skozi čas (ali se struktura porabe gospodinjstev spreminja in kako)
 
-- vpliv cen elektrike in plina na porabo drugih energetskih virov v gospodinjstvih
+- skušal bom napovedati gibanje cene elektrike in plina, ter strukturo porabe gospodinjstev v prihodnosti
 
-Nato bom analiziral še povezavo Slovenije z drugimi svetovnimi državam, sicer v obnovljivih virih energije:
+Nato bom analiziral še obnovljive vire energije:
 
-- primerjal bom količino energije, proizvedeno iz obnovljivih virov
+- pogledal bom, kako se struktura proizvodnje obnovljive energije spreminja skozi čas (po elektrarnah)
 
-- primerjal bom sestavo energije (po virih) iz leta 2016
+- primerjal bom sestavo obnovljive energije svetovnih držav (po virih) iz leta 2016
 
 Iskal bom skupne lastnosti parametrov in poskusil sestaviti logičen razlog zanje.
 
@@ -99,16 +99,15 @@ V spodnjih grafih si bomo ogledali gibanje cene elektrike in zemeljskega plina v
 
 Prvi graf nam prikazuje gibanje cene elektrike in zemeljskega plina skozi čas. Vidimo lahko, da je cena električne energije konstantno višja od cene zemeljskega plina. 
 
-V drugem grafu sem iskal primerjavo gibanja cen obeh energentov skoti čas. To sem storil tako, da sem odštel ceno plina od cene eletrike in iskal vzorce. Če si ga podrobno, vidimo, da povezave (ali kakšnega pravila) med cenama obeh energentov ni. Kljub temu, da lahko v zadnjih nekaj letih zaznamo enakomerno nihanje cene skozi leto (v tretjem četrtletju je razlika v cenah najvišja, v prvem četrtletju pa najnižja), pa ne moremo narediti gotovih sklepov glede vpliva enega na drugega. V letih od 2012 do 2016 je namreč nihanje preveč neenakomerno in nepravilno. Enakomeren vzorec bomo torej pripisali slučaju.
+V drugem grafu sem iskal primerjavo gibanja cen obeh energentov skozi čas. To sem storil tako, da sem odštel ceno plina od cene eletrike in iskal vzorce. Če si ga podrobno ogledamo, vidimo, da povezave (ali kakšnega pravila) med cenama obeh energentov ni. Kljub temu, da lahko v zadnjih nekaj letih zaznamo enakomerno nihanje cene skozi leto (v tretjem četrtletju je razlika v cenah najvišja, v prvem četrtletju pa najnižja), pa ne moremo narediti gotovih sklepov glede vpliva enega na drugega. V letih od 2012 do 2016 je namreč nihanje preveč neenakomerno in nepravilno. Enakomeren vzorec bomo torej pripisali slučaju. Edino kar lahko povemo o korealici je, da se razlika v ceni povečuje.
 
-Tretji graf nam prikazuje napoved cen elektrike in zemeljskega plina še za prihodnost.
 
 ```{r graficeneelektrikeinplina, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'} 
 print(graf1)
 print(graf2)
 ```
 
-Spodaj pa lahko vidimo predikcijski model, kako naj bi se cene elektrike in plina gibale v prihodnosti.  Model je baziran na podlagi linearne regresije. Vidimo lahko, da bo cena elektrike v naslednjih letih kar nekoliko stagnirala, medtem ko bo cena zemeljskega plina padala.
+Spodaj pa lahko vidimo predikcijski model, kako naj bi se cene elektrike in plina gibale v prihodnosti. Model je baziran na podlagi linearne regresije. Vidimo lahko, da bo cena elektrike v naslednjih letih kar nekoliko stagnirala, medtem ko bo cena zemeljskega plina padala.
 
 ```{r graficeneelektrikeinplina2, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'} 
 print(graf3)
@@ -117,7 +116,7 @@ print(graf3)
 
 ## Poraba gospodinjstev po energentskem viru
 
-Ker se porabo različnih energetskih virov meri v različnih enotah (tonah, GWh, ...), sem se odločil, da bom dva grafa. V prvem grafu (histogramu) so tako vsi energetski viri, ki jih merimo v tonah (po masi). Iz njega lahko razberemo, da so gospodinjstva skozi vsa leta največ "kurili" na drva (polena), čeprav se količina vendarle počasi, a vztrajno zmanjšuje. Prav tako je vse manjša poraba ekstra lahkega kurilnega olja. Povečuje pa se predvsem poraba lesnih peletov in lesnih sekancev. Čeprav je poraba drastično nižja od denimo porabe drv, lahko v prihodnosti zaradi večje efektivnosti peletov in sekancev pričakujemo, da bodo le-ti v veliki meri nadomestili drva oz. polena. Delež premoga je bil praktično skozi vsa leta zanemarljivo majhen, delež utekočinjenega naftnega plina pa se ni bistveno spreminjal.
+Ker se porabo različnih energetskih virov meri v različnih enotah (tonah, GWh, ...), sem se odločil, da bom narisal dva ločena grafa. V prvem grafu (histogramu) so tako vsi energetski viri, ki jih merimo v tonah (po masi). Iz njega lahko razberemo, da so gospodinjstva skozi vsa leta največ "kurili" na drva (polena), čeprav se količina vendarle počasi, a vztrajno zmanjšuje. Prav tako je vse manjša poraba ekstra lahkega kurilnega olja. Povečuje pa se predvsem poraba lesnih peletov in lesnih sekancev. Čeprav je poraba drastično nižja od denimo porabe drv, lahko v prihodnosti zaradi večje efektivnosti peletov in sekancev pričakujemo, da bodo le-ti v veliki meri nadomestili drva oz. polena. Delež premoga je bil praktično skozi vsa leta zanemarljivo majhen, delež utekočinjenega naftnega plina pa se ni bistveno spreminjal.
 
 
 ```{r grafiporabegospodinjstev, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.height=4}
@@ -125,25 +124,27 @@ print(graf4)
 ```
 
 
-Na drugem grafu lahko vidimo, da se uporablja manj in manj daljinske toplote, povečuje pa se delež toplote iz okolice. Količina sončne energije se ni bistveno spremenila.
+Na drugem grafu (energetski viri, katerih porabo se meri v tera joulih- TJ) lahko vidimo, da se uporablja manj in manj daljinske toplote, povečuje pa se delež toplote iz okolice. Količina sončne energije se v obdobju 2009 do 2018 ni bistveno spremenila.
 
-Glede na to, da se količina porabe elekrične energije in zemeljskega plina ni pretirano spreminjala, sem se odločil, da ne bom risal grafov zanju.
-
-Nato sem naredil še predikcijo za energetske vire, ki se izražajo v TJ. Poskušal sem napovedati spreminjanje deleža teh virov (odstotka) do leta 2030. Predpostavil sem, da se količina vira spreminja v skladu z logaritemsko funkcijo (da ne bi bilo naraščanje preseglo 100%). Kot lahko vidimo v grafu deleža porab, se bo delež daljinske toplote vse bolj zmanjševal in ga bo leta 2030 le še za slabo tretjino. Delež sončne energije naj se nebi spreminjal, po drugi strani pa bo precej narasel delež toplote iz okolice.
+Glede na to, da se količina porabe elekrične energije in zemeljskega plina ni pretirano spreminjala, sem se odločil, da ne bom risal grafov zanju. Prav tako smo električno energijo in zemeljski plin že precej analizirali glede na ceno v prvem poglavju. 
 
 ```{r grafiporabegospodinjstev2, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.height=6}
 print(graf5)
+```
+
+Nato sem naredil še predikcijo za energetske vire, ki se izražajo v TJ. Poskušal sem napovedati spreminjanje deleža teh virov (odstotka) do leta 2030. Predpostavil sem, da se količina vira spreminja v skladu z logaritemsko funkcijo (da ne bi bilo naraščanje preveč drastično). Kot lahko vidimo v grafu deleža porab, se bo delež daljinske toplote vse bolj zmanjševal in ga bo leta 2030 le še za slabo tretjino. Delež sončne energije naj se ne bi spreminjal, po drugi strani pa bo precej narasel delež toplote iz okolice.
+
+```{r grafiporabegospodinjstev3, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.height=6}
 print(graf6)
 ```
 
-
 ## Proizvodnja slovenskih elektrarn (samo obnovljiva energija)
 
-Ko sem iskal podatke, sem našel celice, ki niso imele numeričnih vrednosti, temveč samo '-'. Da so podatki primerni za analizo, sem v tabelah vrednosti '-' zamenjal z vrednostjo 0. 
+V podatkih za proizvodnjo energije glede na vrsto elektrarne, sem našel celice, ki niso imele numeričnih vrednosti, temveč samo '-'. Da so podatki primerni za analizo, sem v tabelah vrednosti '-' zamenjal z vrednostjo 0. 
 
-V prvem spodnjem grafu sem želel prikazati spreminjanje obnovljive energije skozi leta. Vidimo lahko, da se skupna količina pridelane obnovljive energije vztrajno povečuje (z rahlimi izjemami). Vse to je plot vedno večje okoljske zavednosti ljudi in zelene politike, ki naj bi spodbujala večjo uporabo obnovljivih virov, namesto okolju škodljivih. 
+V prvem spodnjem grafu sem želel prikazati spreminjanje obnovljive energije skozi leta. Vidimo lahko, da se skupna količina pridelane obnovljive energije vztrajno povečuje (z rahlimi izjemami). Vse to je plod vedno večje okoljske zavednosti ljudi in zelene politike, ki naj bi spodbujala večjo uporabo obnovljivih virov, namesto okolju škodljivih. 
 
-Vidimo, da se delež energije iz termoelektrarn in jedrskih elektrarn ni bistveno spreminjal. Delež energije iz hidroelektrarn se je le malo povečal. Delež iz vetrnih in sončnih elektrarn je zanemarljivo majhen (čeprav se predvsem delež sončne energije od leta 2010 vztrajno povečuje).
+Delež energije iz termoelektrarn in jedrskih elektrarn se ni bistveno spreminjal. Delež energije iz hidroelektrarn se je le malo povečal. Delež iz vetrnih in sončnih elektrarn je zanemarljivo majhen (čeprav se predvsem delež sončne energije od leta 2010 vztrajno povečuje).
 
 Za boljše viden delež proizvodnje po elektrarnah je pod grafom še tortni diagram za leto 2018.
 
@@ -160,13 +161,13 @@ Vseeno sem v prvem zemljevidu države pobarval glede na njihovo količino proizv
 
 Tako lahko opazimo, da veliko obnovljive energije proizvedejo razvitejše države (ZDA, Evropska Unija), manj pa tiste, ki so še v razvoju (Vzhodna Evropa, Afrika).
 
-```{r zemljevid1, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.width=15, fig.height=5}
+```{r zemljevid1, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.width=15, fig.height=7}
 print(zemljevid1)
 ```
 
-V drugem zemljevidu (spodaj) sem pobarval države glede na delež energije iz hidroelektrarn napram celotni obnovljivi energiji. Pričakovano imajo največji delež države, ki imajo precej padavin (Ekvatorialna Afrika) in tiste z velikimi rekami (elektrarne na reki Nil v Egiptu). Manj so hidroelektrarne v uporabi tam, kjer je veliko suše (Avstralija, Saharska Afrika), ali pa so padavine tam nekonstantno razporejene skozi leto (Indija). 
+V drugem zemljevidu (spodaj) sem pobarval države glede na delež energije iz hidroelektrarn napram celotni obnovljivi energiji. Pričakovano imajo največji delež države, ki imajo precej padavin (Ekvatorialna Afrika) in tiste z velikimi rekami (elektrarne na reki Nil v Egiptu). Manj so hidroelektrarne v uporabi tam, kjer je veliko suše (Avstralija, Saharska Afrika), ali pa tam, kjer so padavine nekonstantno razporejene skozi leto (Indija). 
 
-```{r zemljevid2, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.width=15, fig.height=5}
+```{r zemljevid2, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.width=15, fig.height=7}
 print(zemljevid2)
 ```
 
@@ -174,7 +175,7 @@ V tretjem zemljevidu sem nato primerjal države po tem, kateri od obnovljivih vi
 
 Tudi v Evropi in Afriki je največ hidroenergije. V evropskih ravninskih državah (Velika Britanija, Nemčija, Poljska) s pridom izkoriščajo vetrno energijo, saj je vetra tu največ. Največ energije od biomase in odpadkov dobijo tiste evropske države, ki nimajo pravih pogojev za hidroelektrarne in so večinoma brez vetra. V Saharski Afriki države največ obnovljive energije dobijo iz sončnih elektrarn. Tu je namreč sonce precej močno in je veliko časa na nebu (ni padavin). Edina država, v kateri prevladuje geotermalna energija, je Kenija. Tam je bilo namreč v preteklosti precej vulkansko aktivno območje. 
 
-```{r zemljevid3, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
+```{r zemljevid3, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide', fig.width=7, fig.height=7}
 print(zemljevid3)
 ```
 
