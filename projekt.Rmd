@@ -150,7 +150,6 @@ Za boljše viden delež proizvodnje po elektrarnah je pod grafom še tortni diag
 
 ```{r grafiproizvodnje elektrike, echo=FALSE, fig.align='center', message=FALSE, warning=FALSE, results='hide'}
 print(graf7)
-print(graf8)
 ```
 
 ## Obnovljivi viri po svetu
