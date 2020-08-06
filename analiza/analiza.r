@@ -28,8 +28,9 @@ names(elektrika_TD1) <- c("a", "b")
 elektrika_TD$vrsta1 <- "podatki"
 elektrika_TD1$vrsta1 <- "napoved"
 elektrika_TD <- rbind(elektrika_TD, elektrika_TD1)
+elektrika_TD$energent <- "Električna energija"
 
-names(elektrika_TD) <- c("leto_in_cetrtletje", "cena_elektrike_(EUR/kWh)", "vrsta1")
+names(elektrika_TD) <- c("leto_in_cetrtletje", "cena_(EUR/kWh)", "vrsta", "energent")
 
 
 modelplin <- lm(data=plin_TD, b ~ a)
@@ -43,17 +44,17 @@ names(plin_TD1) <- c("a", "b")
 plin_TD$vrsta2 <- "podatki"
 plin_TD1$vrsta2 <- "napoved"
 plin_TD <- rbind(plin_TD, plin_TD1)
+plin_TD$energent <- "Zemeljski plin"
 
-names(plin_TD) <- c("leto_in_cetrtletje", "cena_plina_(EUR/kWh)", "vrsta2")
+names(plin_TD) <- c("leto_in_cetrtletje", "cena_(EUR/kWh)", "vrsta", "energent")
 
 
 rownames(elektrika_TD) <- 1:nrow(elektrika_TD)
 rownames(plin_TD) <- 1:nrow(plin_TD)
 
-tabelanapovedi <- merge(elektrika_TD, plin_TD, by="leto_in_cetrtletje")
+tabelanapovedi <- rbind(elektrika_TD, plin_TD)
 tabelanapovedi$leto_in_cetrtletje <- as.numeric(as.character(tabelanapovedi$leto_in_cetrtletje))
-tabelanapovedi$`cena_elektrike_(EUR/kWh)` <- as.numeric(as.character(tabelanapovedi$`cena_elektrike_(EUR/kWh)`))
-tabelanapovedi$`cena_plina_(EUR/kWh)` <- as.numeric(as.character(tabelanapovedi$`cena_plina_(EUR/kWh)`))
+tabelanapovedi$`cena_(EUR/kWh)` <- as.numeric(as.character(tabelanapovedi$`cena_(EUR/kWh)`))
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 # Model rasti za deleže gospodinjstev
@@ -115,16 +116,13 @@ tabelanapovedi2 <- tabelanapovedi2 %>% gather("energent","odstotek", 6:8)
 #-----------------------------------------------------------------------------------------------------------------------------------------------
 # Grafi
 #-----------------------------------------------------------------------------------------------------------------------------------------------
+colors <- c("cena_elektrike_(EUR/kWh)" = "blue", "cena_plina_(EUR/kWh)" = "red")
 
-graf3 <- ggplot(data=tabelanapovedi, aes(x=leto_in_cetrtletje)) +
-  geom_point(aes(y= `cena_elektrike_(EUR/kWh)`), colour = "red") +
-  geom_line(aes(y= `cena_elektrike_(EUR/kWh)`), colour = "red") +
-  geom_point(aes(y= `cena_plina_(EUR/kWh)`), colour = "blue") +
-  geom_line(aes(y= `cena_plina_(EUR/kWh)`), colour = "blue") +
-  xlab('leto') + ylab('cena (EUR/kWh)') + ggtitle('Napoved gibanja cene električne energije in plina') +
-  geom_smooth(method="lm", aes(y= `cena_elektrike_(EUR/kWh)`, colour="blue")) +
-  geom_smooth(method="lm", aes(y= `cena_plina_(EUR/kWh)`, colour="red"))
-
+graf3 <- ggplot(data=tabelanapovedi, aes(x=leto_in_cetrtletje, y=`cena_(EUR/kWh)`, col=energent)) +
+  geom_point(aes(shape = vrsta), size = 2, ) + geom_line() + xlab('leto') + ylab('cena (EUR/kWh)') + ggtitle('Napoved cene plina in elekrike') +
+  geom_smooth(method="lm", aes(y=`cena_(EUR/kWh)`))
+  
+  
 graf6 <- ggplot(data=tabelanapovedi2, aes(x=leto, y=odstotek, fill=energent)) + 
   geom_bar(stat="identity", palette = "Blues") + xlab('leto') + ylab('letna poraba (%)') + ggtitle('Deleži porab, merljivih v TJ') +
-  scale_fill_manual("legend", values = c("Toplota iz okolice (%)" = "#173F5F", "Sončna energija (%)" = "#20639B", "Daljinska toplota (%)" = "#3CAEA3"))
+  scale_fill_manual("Legenda", values = c("Toplota iz okolice (%)" = "#173F5F", "Sončna energija (%)" = "#20639B", "Daljinska toplota (%)" = "#3CAEA3"))
