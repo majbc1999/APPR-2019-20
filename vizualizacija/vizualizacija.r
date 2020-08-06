@@ -90,7 +90,10 @@ graf7 <- ggplot(data = TD_slo_obnovljivi %>% filter(
   elektrarna == "Jedrske elektrarne (GWh)" | elektrarna == "Sončne elektrarne (GWh)"| 
   elektrarna == "Vetrne elektrarne (GWh)"), aes(x=leto, y=`proizvodnja_(GWh)`, fill=elektrarna)) + 
   geom_area(aes(group=`elektrarna`)) + xlab('leto') + ylab('proizvodnja (GWh)') + ggtitle('Proizvodnja obnovljive energija po elektrarnah') +
-  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1)) + 
+  scale_fill_manual("Legenda", values = c("Hidroelektrarne (GWh)" = "#588C7E", "Termoelektrarne (GWh)" = "#D96459", 
+                                          "Jedrske elektrarne (GWh)" = "#F2AE72", "Sončne elektrarne (GWh)" = "#F2E394", 
+                                          "Vetrne elektrarne (GWh)" = "#603E95"))
 
 graf8 <- ggplot(data = TD_slo_obnovljivi %>% filter(
   leto == 2018, elektrarna == "Hidroelektrarne (GWh)" | elektrarna == "Termoelektrarne (GWh)" |
@@ -104,14 +107,13 @@ graf8 <- ggplot(data = TD_slo_obnovljivi %>% filter(
 
 zemljevid1 <- tm_shape(merge(zemljevid, TD_world_obnovljivi %>% group_by(drzave), by.x="SOVEREIGNT", by.y="drzave"), xlim=c(-170,200), ylim=c(-65,85)) +
   tm_polygons("obnovljiva_energija_(GWh)", style = "kmeans", legend.hist = TRUE) + 
-  tm_layout(legend.outside = TRUE, main.title = "Celotna pridelana obnovljiva energija")
+  tm_layout(main.title = "Celotna pridelana obnovljiva energija")
 
 zemljevid2 <- tm_shape(merge(zemljevid, TD_world_obnovljivi %>% group_by(drzave), by.x="SOVEREIGNT", by.y="drzave"), xlim=c(-170,200), ylim=c(-65,85)) +
   tm_polygons("%_obnovljive_energije_iz_hidroelektrarn", style = "fixed", breaks = c(0, 20, 40, 60, 80, 100), palette = "Blues") + 
-  tm_layout(legend.outside = TRUE, main.title = "Odstotek obnovljive energije iz hidroelektrarn")
+  tm_layout(main.title = "Odstotek obnovljive energije iz hidroelektrarn")
 
 zemljevid3 <- tm_shape(merge(zemljevid, TD_world_obnovljivi %>% group_by(drzave), by.x="SOVEREIGNT", by.y="drzave"), xlim=c(-25,60), ylim=c(-45,72)) +
   tm_polygons(col = "prevladujoči vir", palette = paleta1) + tm_layout(legend.outside = TRUE, legend.text.size = 0.54, main.title = "Prevladujoči vir obnovljive energije")
-
 
 
