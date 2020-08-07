@@ -179,8 +179,6 @@ Tudi v Evropi in Afriki je največ hidroenergije. V evropskih ravninskih država
 print(zemljevid3)
 ```
 
-# Shiny
-
 ```{r shiny, echo=FALSE}
 shinyAppDir("shiny", options=list(width="100%", height=600))
 ```
