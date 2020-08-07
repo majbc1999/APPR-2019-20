@@ -106,12 +106,20 @@ graf8 <- ggplot(data = TD_slo_obnovljivi %>% filter(
   axis.title.y = element_blank())
 
 zemljevid1 <- tm_shape(merge(zemljevid, TD_world_obnovljivi %>% group_by(drzave), by.x="SOVEREIGNT", by.y="drzave"), xlim=c(-170,200), ylim=c(-65,85)) +
-  tm_polygons("obnovljiva_energija_(GWh)", style = "kmeans", legend.hist = TRUE) + 
-  tm_layout(main.title = "Celotna pridelana obnovljiva energija")
+  tm_polygons("obnovljiva_energija_(GWh)", 
+              title = "obnovljiva energija (GWh)",
+              style = "kmeans", legend.hist = TRUE) + 
+  tm_layout(main.title = "Celotna pridelana obnovljiva energija") +
+  tm_layout(legend.position = c("left","bottom"),
+            legend.title.size = 1)
 
 zemljevid2 <- tm_shape(merge(zemljevid, TD_world_obnovljivi %>% group_by(drzave), by.x="SOVEREIGNT", by.y="drzave"), xlim=c(-170,200), ylim=c(-65,85)) +
-  tm_polygons("%_obnovljive_energije_iz_hidroelektrarn", style = "fixed", breaks = c(0, 20, 40, 60, 80, 100), palette = "Blues") + 
-  tm_layout(main.title = "Odstotek obnovljive energije iz hidroelektrarn")
+  tm_polygons("%_obnovljive_energije_iz_hidroelektrarn", 
+              title = "% obnovljive energije \n iz hidroelektrarn", 
+              style = "fixed", breaks = c(0, 20, 40, 60, 80, 100), palette = "Blues") + 
+  tm_layout(main.title = "Odstotek obnovljive energije iz hidroelektrarn") +
+  tm_layout(legend.position = c("left","bottom"),
+            legend.title.size = 1)
 
 zemljevid3 <- tm_shape(merge(zemljevid, TD_world_obnovljivi %>% group_by(drzave), by.x="SOVEREIGNT", by.y="drzave"), xlim=c(-25,60), ylim=c(-45,72)) +
   tm_polygons(col = "prevladujoči vir", palette = paleta1) + tm_layout(legend.outside = TRUE, legend.text.size = 0.54, main.title = "Prevladujoči vir obnovljive energije")
